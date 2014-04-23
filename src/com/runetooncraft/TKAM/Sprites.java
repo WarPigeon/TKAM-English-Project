@@ -16,6 +16,12 @@ public class Sprites {
 	public static Sprite Grass2 = new Sprite(16, 2, 0, Sheet1);
 	public static Sprite Grass3 = new Sprite(16, 3, 0, Sheet1);
 
+	//Wood
+	public static Sprite WoodFloor = new Sprite(16, 4, 0, Sheet1);
+	
+	//Doors
+	public static Sprite Door1Top = new Sprite(16, 5, 0, Sheet1);
+	public static Sprite Door1Bottom = new Sprite(16, 5, 1, Sheet1);
 	
 	//Player Sprites
 	//Scout

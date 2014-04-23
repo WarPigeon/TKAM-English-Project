@@ -31,7 +31,7 @@ public class Main extends WPEngine4 {
 		SetClassInstance(this,false);
 		level = new RandomLevelTKAM(64,64, DataFolder, "Testy");
 		setEngineKeyListener(KL);
-		player = new Player(0, 0, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+		player = new Player(32, 32, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
 		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 1, 16);
 		player.init(level,this);
 		PackFrame();
