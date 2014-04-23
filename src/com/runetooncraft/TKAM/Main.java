@@ -1,5 +1,8 @@
 package com.runetooncraft.TKAM;
 
+import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,10 +25,12 @@ public class Main extends WPEngine4 {
 	Sprites sprites = new Sprites();
 	Tiles tiles = new Tiles();
 	Npc npc;
+	BufferedImage TextBox;
 	public Main(int Height, int Width, int Scale, int PixelWidth, int PixelHeight, int ImageToPixelRatio, File DataFolder) {
 		super(Height, Width, Scale, PixelWidth, PixelHeight, ImageToPixelRatio, DataFolder, GameType.FREE_ROAM_TILE_BASED);
 		DataFolder.mkdirs();
 		setIconImage();
+		setTextBoxImage();
 		SetWindowResizable(false);
 		SetWindowTitle("TKAM Game Project by Marcus Dubreuil and Ethan Defrank");
 		KL = new KeyListener();
@@ -40,6 +45,16 @@ public class Main extends WPEngine4 {
 		start();
 	}
 	
+	private void setTextBoxImage() {
+		try {
+			InputStream imgStream = Main.class.getResourceAsStream("/TextBox.png");
+			TextBox = ImageIO.read(imgStream);
+			imgStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void setIconImage() {
 			try {
 				InputStream imgStream = Main.class.getResourceAsStream("/favicon.png");
@@ -83,5 +98,9 @@ public class Main extends WPEngine4 {
 		//INPUT CODE TO UNPACK LEVELS HERE
 		File DataFolder = new File(workingDirectory); 
 		new Main(427, 240, 2000, 16, 16, 16, DataFolder);
+	}
+	
+	public void DrawOtherImages(Graphics graphics) {
+		graphics.drawImage(TextBox, this.getUnscaledWidth() / 2 + 34, 350, TextBox.getWidth(), TextBox.getHeight(), null);
 	}
 }
