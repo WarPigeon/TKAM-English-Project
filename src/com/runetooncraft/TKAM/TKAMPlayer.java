@@ -15,7 +15,7 @@ public class TKAMPlayer extends Player {
 		
 		for(int i = 0; i < 4; i++) {
 				int xp = ((x + xa) + i % 2 - 10) / engine.getScreenEngine2D().PixelWidth;
-				int yp = ((y + ya) + i / 2) / engine.getScreenEngine2D().PixelHeight;
+				int yp = ((y + ya) + i / 2 + 4) / engine.getScreenEngine2D().PixelHeight;
 				if (level.getTile(xp, yp).collide(i)) solid = true;
 			}
 		
