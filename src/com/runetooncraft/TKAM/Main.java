@@ -10,13 +10,15 @@ import javax.imageio.ImageIO;
 import com.runetooncraft.warpigeon.engine.GameType;
 import com.runetooncraft.warpigeon.engine.WPEngine4;
 import com.runetooncraft.warpigeon.engine.graphics.Sprite;
+import com.runetooncraft.warpigeon.engine.level.RandomLevel;
 import com.runetooncraft.warpigeon.engine.utils3d.KeyListener;
 import com.runetooncraft.warpigeon.testengine.PlayerMain;
 
 
 public class Main extends WPEngine4 {
 	KeyListener KL;
-	
+	Sprites sprites = new Sprites();
+	Tiles tiles = new Tiles();
 	public Main(int Height, int Width, int Scale, int PixelWidth, int PixelHeight, int ImageToPixelRatio, File DataFolder) {
 		super(Height, Width, Scale, PixelWidth, PixelHeight, ImageToPixelRatio, DataFolder, GameType.FREE_ROAM_TILE_BASED);
 		DataFolder.mkdirs();
@@ -25,10 +27,12 @@ public class Main extends WPEngine4 {
 		SetWindowTitle("TKAM Game Project by Marcus Dubreuil and Ethan Defrank");
 		KL = new KeyListener();
 		SetClassInstance(this,false);
-		//level stuff here
+		level = new RandomLevel(64,64, DataFolder, "Testy");
 		setEngineKeyListener(KL);
-		Sprite[] ForwardAnims = new Sprite[2];
-		Sprite[] BackwardAnims = new Sprite[2];
+		Sprite[] ForwardAnims = new Sprite[1];
+		ForwardAnims[0] = sprites.Void;
+		Sprite[] BackwardAnims = new Sprite[1];
+		BackwardAnims[0] = sprites.Void;
 		player = new PlayerMain(KL, 0, 0, ForwardAnims, BackwardAnims, ForwardAnims, ForwardAnims);
 		player.init(level,this);
 		PackFrame();
