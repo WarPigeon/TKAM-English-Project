@@ -9,16 +9,18 @@ import javax.imageio.ImageIO;
 
 import com.runetooncraft.warpigeon.engine.GameType;
 import com.runetooncraft.warpigeon.engine.WPEngine4;
+import com.runetooncraft.warpigeon.engine.entity.mob.Npc;
+import com.runetooncraft.warpigeon.engine.entity.mob.Player;
 import com.runetooncraft.warpigeon.engine.graphics.Sprite;
 import com.runetooncraft.warpigeon.engine.level.RandomLevel;
 import com.runetooncraft.warpigeon.engine.utils3d.KeyListener;
-import com.runetooncraft.warpigeon.testengine.PlayerMain;
 
 
 public class Main extends WPEngine4 {
 	KeyListener KL;
 	Sprites sprites = new Sprites();
 	Tiles tiles = new Tiles();
+	Npc npc;
 	public Main(int Height, int Width, int Scale, int PixelWidth, int PixelHeight, int ImageToPixelRatio, File DataFolder) {
 		super(Height, Width, Scale, PixelWidth, PixelHeight, ImageToPixelRatio, DataFolder, GameType.FREE_ROAM_TILE_BASED);
 		DataFolder.mkdirs();
@@ -29,11 +31,8 @@ public class Main extends WPEngine4 {
 		SetClassInstance(this,false);
 		level = new RandomLevel(64,64, DataFolder, "Testy");
 		setEngineKeyListener(KL);
-		Sprite[] ForwardAnims = new Sprite[1];
-		ForwardAnims[0] = sprites.Void;
-		Sprite[] BackwardAnims = new Sprite[1];
-		BackwardAnims[0] = sprites.Void;
-		player = new PlayerMain(KL, 0, 0, ForwardAnims, BackwardAnims, ForwardAnims, ForwardAnims);
+		player = new Player(0, 0, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 1, 16);
 		player.init(level,this);
 		PackFrame();
 		start();
@@ -57,6 +56,7 @@ public class Main extends WPEngine4 {
 	public void privateRender() {
 		int xScroll = player.x + screen.width /2 - 16;
 		int yScroll = player.y + screen.height /2 - 16;
+		npc.render(screen);
 		player.render(xScroll, yScroll, screen);
 	}
 	
