@@ -29,7 +29,7 @@ public class Main extends WPEngine4 {
 		SetWindowTitle("TKAM Game Project by Marcus Dubreuil and Ethan Defrank");
 		KL = new KeyListener();
 		SetClassInstance(this,false);
-		level = new RandomLevel(64,64, DataFolder, "Testy");
+		level = new RandomLevelTKAM(64,64, DataFolder, "Testy");
 		setEngineKeyListener(KL);
 		player = new Player(0, 0, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
 		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 1, 16);
@@ -56,8 +56,16 @@ public class Main extends WPEngine4 {
 	public void privateRender() {
 		int xScroll = player.x + screen.width /2 - 16;
 		int yScroll = player.y + screen.height /2 - 16;
-		npc.render(screen);
-		player.render(xScroll, yScroll, screen);
+		if(player.y >= npc.y + 16) {
+			npc.render(screen);
+			player.render(xScroll, yScroll, screen);
+		} else if(player.y <= npc.y + 16){
+			player.render(xScroll, yScroll, screen);
+			npc.render(screen);
+		} else {
+			npc.render(screen);
+			player.render(xScroll, yScroll, screen);
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -72,6 +80,6 @@ public class Main extends WPEngine4 {
 		workingDirectory = workingDirectory + "/WarPigeon/TKAMGame";
 		//INPUT CODE TO UNPACK LEVELS HERE
 		File DataFolder = new File(workingDirectory); 
-		new Main(427, 240, 3000, 16, 16, 16, DataFolder);
+		new Main(427, 240, 2000, 16, 16, 16, DataFolder);
 	}
 }

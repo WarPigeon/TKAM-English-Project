@@ -33,7 +33,7 @@ public class SDK extends WPEngine4  {
 		SetWindowTitle("War-Pigion Engine4");
 		KL = new KeyListener();
 		SetClassInstance(this,true);
-		level = new RandomLevel(64,64, DataFolder, "UnNamed");
+		level = new RandomLevelTKAM(64,64, DataFolder, "UnNamed");
 		setEngineKeyListener(KL);
 		PackFrame();
 		start();
