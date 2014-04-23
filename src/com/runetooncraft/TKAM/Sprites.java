@@ -18,10 +18,19 @@ public class Sprites {
 
 	//Wood
 	public static Sprite WoodFloor = new Sprite(16, 4, 0, Sheet1);
+	public static Sprite DarkWoodFloor = new Sprite(16, 4, 1, Sheet1);
 	
 	//Doors
 	public static Sprite Door1Top = new Sprite(16, 5, 0, Sheet1);
 	public static Sprite Door1Bottom = new Sprite(16, 5, 1, Sheet1);
+	
+	//House
+	public static Sprite BrickTile = new Sprite(16, 0, 1, Sheet1);
+	public static Sprite Pole = new Sprite(16, 1, 1, Sheet1);
+	public static Sprite PoleBot = new Sprite(16, 1, 2, Sheet1);
+	public static Sprite Stairs1 = new Sprite(16, 2, 1, Sheet1);
+	public static Sprite HouseExt = new Sprite(16, 3, 1, Sheet1);
+	
 	
 	//Player Sprites
 	//Scout

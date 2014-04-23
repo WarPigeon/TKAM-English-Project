@@ -17,10 +17,18 @@ public class Tiles {
 	
 	//Wood
 	public static Tile WoodFloor = new WoodFloorTile(Sprites.WoodFloor, 4);
+	public static Tile DarkWoodFloor = new WoodFloorTile(Sprites.DarkWoodFloor, 5);
 	
 	//Doors
-	public static Tile Door1Top = new DoorTile(Sprites.Door1Top, 5, "Door1Top");
-	public static Tile Door1Bottom = new DoorTile(Sprites.Door1Bottom, 6, "Door1Bottom");
+	public static Tile Door1Top = new DoorTile(Sprites.Door1Top, 6, "Door1Top");
+	public static Tile Door1Bottom = new DoorTile(Sprites.Door1Bottom, 7, "Door1Bottom");
+	
+	//House Tiles
+	public static Tile BrickTile = new BasicTile(Sprites.BrickTile, 8, "BrickTile");
+	public static Tile PoleTile = new BasicTile(Sprites.Pole, 9, "Pole");
+	public static Tile PoleBotTile = new BasicTile(Sprites.PoleBot, 10, "PoleBot");
+	public static Tile Stairs1 = new BasicTile(Sprites.Stairs1, 11, "Stairs1");
+	public static Tile HouseExt = new BasicTile(Sprites.HouseExt, 12, "HouseExt");
 	
 	public Tiles() {
 		Level.TileIDS.put(0, Grass1);
@@ -28,8 +36,14 @@ public class Tiles {
 		Level.TileIDS.put(2, Grass3);
 		Level.TileIDS.put(3, Void);
 		Level.TileIDS.put(4, WoodFloor);
-		Level.TileIDS.put(5, Door1Top);
-		Level.TileIDS.put(6, Door1Bottom);
+		Level.TileIDS.put(5, DarkWoodFloor);
+		Level.TileIDS.put(6, Door1Top);
+		Level.TileIDS.put(7, Door1Bottom);
+		Level.TileIDS.put(8, BrickTile);
+		Level.TileIDS.put(9, PoleTile);
+		Level.TileIDS.put(10, PoleBotTile);
+		Level.TileIDS.put(11, Stairs1);
+		Level.TileIDS.put(12, HouseExt);
 		Level.VoidTile = Void;
 	}
 

@@ -50,7 +50,7 @@ public class SDK extends WPEngine4  {
 		}
 		workingDirectory = workingDirectory + "/WarPigeon/TKAMGame";
 		File DataFolder = new File(workingDirectory);
-		new SDK(500, 250, 2000, 16, 16, 16, DataFolder);
+		new SDK(427, 240, 2000, 16, 16, 16, DataFolder);
 	}
 	
 	private void setIconImage() {
