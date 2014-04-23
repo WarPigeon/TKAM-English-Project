@@ -12,6 +12,7 @@ import com.runetooncraft.warpigeon.engine.WPEngine4;
 import com.runetooncraft.warpigeon.engine.entity.mob.Npc;
 import com.runetooncraft.warpigeon.engine.entity.mob.Player;
 import com.runetooncraft.warpigeon.engine.graphics.Sprite;
+import com.runetooncraft.warpigeon.engine.level.Level;
 import com.runetooncraft.warpigeon.engine.level.RandomLevel;
 import com.runetooncraft.warpigeon.engine.utils3d.KeyListener;
 
@@ -29,10 +30,11 @@ public class Main extends WPEngine4 {
 		SetWindowTitle("TKAM Game Project by Marcus Dubreuil and Ethan Defrank");
 		KL = new KeyListener();
 		SetClassInstance(this,false);
-		level = new RandomLevelTKAM(64,64, DataFolder, "Testy");
+		//level = new RandomLevelTKAM(64,64, DataFolder, "Testy");
+		level = new Level(DataFolder, "HouseEx");
 		setEngineKeyListener(KL);
-		player = new Player(32, 32, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
-		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 1, 16);
+		player = new TKAMPlayer(64, 64, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 6, 16);
 		player.init(level,this);
 		PackFrame();
 		start();
