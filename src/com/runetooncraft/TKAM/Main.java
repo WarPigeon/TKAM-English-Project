@@ -1,13 +1,18 @@
 package com.runetooncraft.TKAM;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -26,9 +31,13 @@ public class Main extends WPEngine4 {
 	Sprites sprites = new Sprites();
 	Tiles tiles = new Tiles();
 	Npc npc;
-	BufferedImage TextBox;
+	BufferedImage TextBox, NameBox;
+	String TextToPrint = "";
+	String NameToPrint = "";
 	public Main(int Height, int Width, int Scale, int PixelWidth, int PixelHeight, int ImageToPixelRatio, File DataFolder) {
 		super(Height, Width, Scale, PixelWidth, PixelHeight, ImageToPixelRatio, DataFolder, GameType.FREE_ROAM_TILE_BASED);
+		TextToPrint = "This is a very random and long paragraph to test out the current text box. In no way will this be an actual   thing in the game eventually but this is simply to test out the line creating mechanic to render  text in the text box in the bottom of the screen.";
+		NameToPrint = "Marcus Dubreuil";
 		DataFolder.mkdirs();
 		setIconImage();
 		setTextBoxImage();
@@ -51,6 +60,10 @@ public class Main extends WPEngine4 {
 			InputStream imgStream = Main.class.getResourceAsStream("/TextBox.png");
 			TextBox = ImageIO.read(imgStream);
 			imgStream.close();
+			
+			InputStream imgStream2 = Main.class.getResourceAsStream("/NameBox.png");
+			NameBox = ImageIO.read(imgStream2);
+			imgStream2.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -103,8 +116,38 @@ public class Main extends WPEngine4 {
 	
 	public void DrawOtherImages(Graphics graphics) {
 		graphics.drawImage(TextBox, 100, 320, TextBox.getWidth(), TextBox.getHeight(), null);
+		graphics.drawImage(NameBox, 100, 288, NameBox.getWidth(), NameBox.getHeight(), null);
+		drawText();
 		if(!getLevel().render) {
-			graphics.drawString("Loading...", getUnscaledWidth() / 2, getUnscaledHeight() / 2);
+			Graphics2D g2 = (Graphics2D)graphics;
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			Font font = new Font("Arial", Font.BOLD, 12);
+			g2.setColor(new Color(0xA0A0A0));
+			g2.setFont(font);
+			g2.drawString("Loading...", getUnscaledWidth() / 2, getUnscaledHeight() / 2);
 		}
+	}
+
+	private void drawText() {
+		Graphics2D g2 = (Graphics2D)graphics;
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		Font font = new Font("Arial", Font.BOLD, 12);
+		g2.setColor(new Color(0xA0A0A0));
+		g2.setFont(font);
+		List<String> strings = new ArrayList<String>();
+		int index = 0;
+		while (index<TextToPrint.length()) {
+		    strings.add(TextToPrint.substring(index, Math.min(index+110,TextToPrint.length())));
+		    index+=110;
+		}
+		int textX = 120;
+		int textY = 350;
+		for(String s: strings) {
+			g2.drawString(s, textX, textY);
+			textY+=13;
+		}
+		font = new Font("Arial", Font.ITALIC + Font.BOLD, 12);
+		g2.setFont(font);
+		g2.drawString(NameToPrint, 120, 310);
 	}
 }
