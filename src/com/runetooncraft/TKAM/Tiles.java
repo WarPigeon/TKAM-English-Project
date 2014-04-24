@@ -45,6 +45,7 @@ public class Tiles {
 		Level.TileIDS.put(11, Stairs1);
 		Level.TileIDS.put(12, HouseExt);
 		Level.VoidTile = Void;
+		Level.LoadingTile = BrickTile;
 	}
 
 }

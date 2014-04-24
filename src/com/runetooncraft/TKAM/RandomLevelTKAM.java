@@ -3,13 +3,14 @@ package com.runetooncraft.TKAM;
 import java.io.File;
 import java.util.Random;
 
+import com.runetooncraft.warpigeon.engine.WPEngine4;
 import com.runetooncraft.warpigeon.engine.level.RandomLevel;
 
 public class RandomLevelTKAM extends RandomLevel {
 
 	private static final Random random = new Random();
-	public RandomLevelTKAM(int width, int height, File workingDir,String LevelName) {
-		super(width, height, workingDir, LevelName);
+	public RandomLevelTKAM(int width, int height, File workingDir,String LevelName, WPEngine4 engine) {
+		super(width, height, workingDir, LevelName, engine);
 	}
 	
 	public void generateLevel() {

@@ -1,6 +1,7 @@
 package com.runetooncraft.TKAM;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -36,7 +37,7 @@ public class Main extends WPEngine4 {
 		KL = new KeyListener();
 		SetClassInstance(this,false);
 		//level = new RandomLevelTKAM(64,64, DataFolder, "Testy");
-		level = new Level(DataFolder, "HouseEx");
+		level = new Level(DataFolder, "HouseEx", this);
 		setEngineKeyListener(KL);
 		player = new TKAMPlayer(64, 64, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
 		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 6, 16);
@@ -101,6 +102,9 @@ public class Main extends WPEngine4 {
 	}
 	
 	public void DrawOtherImages(Graphics graphics) {
-		graphics.drawImage(TextBox, this.getUnscaledWidth() / 2 + 34, 350, TextBox.getWidth(), TextBox.getHeight(), null);
+		graphics.drawImage(TextBox, 100, 320, TextBox.getWidth(), TextBox.getHeight(), null);
+		if(!getLevel().render) {
+			graphics.drawString("Loading...", getUnscaledWidth() / 2, getUnscaledHeight() / 2);
+		}
 	}
 }
