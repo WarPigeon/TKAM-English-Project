@@ -46,7 +46,7 @@ public class Main extends WPEngine4 {
 		KL = new KeyListener();
 		SetClassInstance(this,false);
 		//level = new RandomLevelTKAM(64,64, DataFolder, "Testy");
-		level = new Level(DataFolder, "HouseEx", this);
+		level = new Level(DataFolder, "Level1", this);
 		setEngineKeyListener(KL);
 		player = new TKAMPlayer(64, 64, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
 		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 6, 16);
@@ -102,13 +102,14 @@ public class Main extends WPEngine4 {
 	public static void main(String[] args) {
 		String workingDirectory;
 		String OS = (System.getProperty("os.name")).toUpperCase();
-		if (OS.contains("WIN")) {
-		    workingDirectory = System.getenv("AppData");
-		} else {
-		    workingDirectory = System.getProperty("user.home");
-		    workingDirectory += "/Library/Application Support";
-		}
-		workingDirectory = workingDirectory + "/WarPigeon/TKAMGame";
+//		if (OS.contains("WIN")) {
+//		    workingDirectory = System.getenv("AppData");
+//		} else {
+//		    workingDirectory = System.getProperty("user.home");
+//		    workingDirectory += "/Library/Application Support";
+//		}
+//		workingDirectory = workingDirectory + "/WarPigeon/TKAMGame";
+		workingDirectory = System.getProperty("user.home") + "/desktop/TKAMGame";
 		//INPUT CODE TO UNPACK LEVELS HERE
 		File DataFolder = new File(workingDirectory); 
 		new Main(427, 240, 2000, 16, 16, 16, DataFolder);

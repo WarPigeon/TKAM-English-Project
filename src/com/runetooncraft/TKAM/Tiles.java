@@ -23,6 +23,14 @@ public class Tiles {
 	public static Tile Door1Top = new BasicTile(Sprites.Door1Top, 6, "Door1Top", true);
 	public static Tile Door1Bottom = new BasicTile(Sprites.Door1Bottom, 7, "Door1Bottom", true);
 	
+	//Windows
+	public static Tile Window1Top = new BasicTile(Sprites.Window1Top, 13, "Window1Top", true);
+	public static Tile Window1Bottom = new BasicTile(Sprites.Window1Bottom, 14, "Window1Bottom", true);
+	
+	//Chair
+	public static Tile ChairTop = new BasicTile(Sprites.ChairTop, 15, "ChairTop", true);
+	public static Tile ChairBottom = new BasicTile(Sprites.ChairBottom, 16, "ChairBottom", true);
+	
 	//House Tiles
 	public static Tile BrickTile = new BasicTile(Sprites.BrickTile, 8, "BrickTile", true);
 	public static Tile PoleTile = new BasicTile(Sprites.Pole, 9, "Pole", false);
@@ -44,6 +52,10 @@ public class Tiles {
 		Level.TileIDS.put(10, PoleBotTile);
 		Level.TileIDS.put(11, Stairs1);
 		Level.TileIDS.put(12, HouseExt);
+		Level.TileIDS.put(13, Window1Top);
+		Level.TileIDS.put(14, Window1Bottom);
+		Level.TileIDS.put(15, ChairTop);
+		Level.TileIDS.put(16, ChairBottom);
 		Level.VoidTile = Void;
 		Level.LoadingTile = BrickTile;
 	}

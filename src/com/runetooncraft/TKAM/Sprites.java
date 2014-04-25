@@ -24,6 +24,14 @@ public class Sprites {
 	public static Sprite Door1Top = new Sprite(16, 5, 0, Sheet1);
 	public static Sprite Door1Bottom = new Sprite(16, 5, 1, Sheet1);
 	
+	//Windows
+	public static Sprite Window1Top = new Sprite(16, 6, 0, Sheet1);
+	public static Sprite Window1Bottom = new Sprite(16, 6, 1, Sheet1);
+	
+	//Chair
+	public static Sprite ChairTop = new Sprite(16, 7, 0, Sheet1);
+	public static Sprite ChairBottom = new Sprite(16, 7, 1, Sheet1);
+	
 	//House
 	public static Sprite BrickTile = new Sprite(16, 0, 1, Sheet1);
 	public static Sprite Pole = new Sprite(16, 1, 1, Sheet1);

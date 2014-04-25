@@ -11,6 +11,7 @@ import com.runetooncraft.warpigeon.engine.GameType;
 import com.runetooncraft.warpigeon.engine.WPEngine4;
 import com.runetooncraft.warpigeon.engine.graphics.Sprite;
 import com.runetooncraft.warpigeon.engine.level.CoordinateHandler;
+import com.runetooncraft.warpigeon.engine.level.Level;
 import com.runetooncraft.warpigeon.engine.level.RandomLevel;
 import com.runetooncraft.warpigeon.engine.level.TileCoordinate;
 import com.runetooncraft.warpigeon.engine.utils3d.KeyListener;
@@ -33,22 +34,41 @@ public class SDK extends WPEngine4  {
 		SetWindowTitle("War-Pigion Engine4");
 		KL = new KeyListener();
 		SetClassInstance(this,true);
-		level = new RandomLevelTKAM(64,64, DataFolder, "UnNamed", this);
+		level = new Level(DataFolder, "Level1", this);
+//		level = new RandomLevelTKAM(128,128,DataFolder,"Level1", this);
 		setEngineKeyListener(KL);
 		PackFrame();
 		start();
 	}
 	
+	private void setBorder() {
+		level.render = false;
+		for(int i = 0; i < level.getHeight(); i++) {
+			TileCoordinate tc = new TileCoordinate(0, i);
+			level.setTile(tc, Tiles.BrickTile, 1);
+			
+			tc = new TileCoordinate(i, 0);
+			level.setTile(tc, Tiles.BrickTile, 1);
+			
+			tc = new TileCoordinate(level.getWidth() - 1, i);
+			level.setTile(tc, Tiles.BrickTile, 1);
+			
+			tc = new TileCoordinate(i,level.getHeight() - 1);
+			level.setTile(tc, Tiles.BrickTile, 1);
+		}
+		level.render = true;
+	}
+
 	public static void main(String[] args) {
 		String workingDirectory;
 		String OS = (System.getProperty("os.name")).toUpperCase();
 		if (OS.contains("WIN")) {
-		    workingDirectory = System.getenv("AppData");
+		    //workingDirectory = System.getenv("AppData");
 		} else {
-		    workingDirectory = System.getProperty("user.home");
-		    workingDirectory += "/Library/Application Support";
+		    //workingDirectory = System.getProperty("user.home");
+		    //workingDirectory += "/Library/Application Support";
 		}
-		workingDirectory = workingDirectory + "/WarPigeon/TKAMGame";
+		workingDirectory = System.getProperty("user.home") + "/desktop/TKAMGame";
 		File DataFolder = new File(workingDirectory);
 		new SDK(427, 240, 2000, 16, 16, 16, DataFolder);
 	}
