@@ -47,7 +47,7 @@ public class Main extends WPEngine4 {
 		SetWindowTitle("TKAM Game Project by Marcus Dubreuil and Ethan Defrank");
 		KL = new KeyListener();
 		SetClassInstance(this,false);
-		//level = new RandomLevelTKAM(64,64, DataFolder, "Testy");
+		//level = new RandomLevelTKAM(12,12, DataFolder, "Level2", this);
 		level = new Level(DataFolder, "Level1", this);
 		setEngineKeyListener(KL);
 		player = new TKAMPlayer(21, 11, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
@@ -153,6 +153,45 @@ public class Main extends WPEngine4 {
 						
 				KL.stallListen = false;
 				System.out.println(KL.stallListen);
+				NameToPrint = "Marcus Dubreuil";
+				TextToPrint = "Use the w,a,s,d keys or the arrow keys to walk to the front door of the Finch house next door";
+				boolean done = false;
+				while(!done) {
+					System.out.println("X: " + player.x + "y: " + player.y);
+					if(player.x >= 547 && player.x <= 572 && player.y >= 108 && player.y <= 114) {
+						done = true;
+					}
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				level.LoadLevelFile(DataFolder, "Level2");
+				Atticus = new Npc(sprites.AtticusLeftAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 3, 7, 16);
+				Jem = new Npc(sprites.JemForwardAnims, sprites.JemBackWardAnims, sprites.JemLeftAnims, sprites.JemRightAnims, 2, 7, 16);
+				player.x = 9 * 16;
+				player.y = 11 * 15;
+				KL.stallListen = true;
+				KL.down = false;
+				KL.left = false;
+				KL.right = false;
+				KL.up = false;
+				reset();
+				Level = 3;
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				printText("Marcus Dubreuil", "You enter the house and see that Jem is furious about Mrs. Dubose's comments...");
+				Wait();
+				printText("Atticus", "Easy does it, son. She is an old lady and she’s ill. You just hold your head high and be a gentleman. Whatever she says to you, it’s your job not to let her make you mad.");
+				Wait();
+				printText("Marcus Dubreuil", "As we can see Atticus is explaining to Jem how he must act like a gentleman despite what Mrs. Dubose          says to him. He is teaching Jem important morals concerning what is right to do as a gentleman.");
+				Wait();
+				
+				
 			}
 
 			private void WalkAtticusRight(int x) {
@@ -251,6 +290,10 @@ public class Main extends WPEngine4 {
 			Jem.update();
 		} else if(Level == 0) {
 			player.update();
+		} else if(Level == 3) {
+			player.update();
+			Atticus.update();
+			Jem.update();
 		}
 	}
 	
@@ -263,6 +306,9 @@ public class Main extends WPEngine4 {
 			Atticus.render(screen);
 		} else if(Level == 0) {
 			dubose.render(screen);
+		} else if(Level == 3) {
+			Atticus.render(screen);
+			Jem.render(screen);
 		}
 		player.render(xScroll, yScroll, screen);
 	}

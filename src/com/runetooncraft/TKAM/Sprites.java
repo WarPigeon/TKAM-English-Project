@@ -16,6 +16,15 @@ public class Sprites {
 	public static Sprite Grass2 = new Sprite(16, 2, 0, Sheet1);
 	public static Sprite Grass3 = new Sprite(16, 3, 0, Sheet1);
 
+	//Wall Interior
+	public static Sprite WallInterior = new Sprite(16, 0, 2, Sheet1);
+	
+	//Table
+	public static Sprite BigTableTL = new Sprite(16, 8, 0, Sheet1);
+	public static Sprite BigTableTR = new Sprite(16, 9, 0, Sheet1);
+	public static Sprite BigTableBL = new Sprite(16, 8, 1, Sheet1);
+	public static Sprite BigTableBR = new Sprite(16, 9, 1, Sheet1);
+	
 	//Wood
 	public static Sprite WoodFloor = new Sprite(16, 4, 0, Sheet1);
 	public static Sprite DarkWoodFloor = new Sprite(16, 4, 1, Sheet1);
@@ -23,6 +32,10 @@ public class Sprites {
 	//Doors
 	public static Sprite Door1Top = new Sprite(16, 5, 0, Sheet1);
 	public static Sprite Door1Bottom = new Sprite(16, 5, 1, Sheet1);
+	
+	//Bookcase
+	public static Sprite BookCaseTop = new Sprite(16, 10, 0, Sheet1);
+	public static Sprite BookCaseBottom = new Sprite(16, 10, 1, Sheet1);
 	
 	//Windows
 	public static Sprite Window1Top = new Sprite(16, 6, 0, Sheet1);
