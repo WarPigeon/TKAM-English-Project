@@ -7,7 +7,7 @@ import com.runetooncraft.warpigeon.engine.utils.KeyBoardEvents;
 public class TKAMPlayer extends Player {
 
 	public TKAMPlayer(int x, int y, Sprite[] ForwardAnims, Sprite[] BackwardAnims, Sprite[] LeftAnims, Sprite[] RightAnims, KeyBoardEvents input) {
-		super(x, y, ForwardAnims, BackwardAnims, LeftAnims, RightAnims, input);
+		super(x * 16, y * 16, ForwardAnims, BackwardAnims, LeftAnims, RightAnims, input);
 	}
 	
 	public boolean collision(int xa, int ya) {

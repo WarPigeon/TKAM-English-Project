@@ -30,14 +30,16 @@ public class Main extends WPEngine4 {
 	KeyListener KL;
 	Sprites sprites = new Sprites();
 	Tiles tiles = new Tiles();
-	Npc npc;
+	DuboseNPC dubose = new DuboseNPC(sprites.DuboseIdleAnims, sprites.DuboseIdleAnims, sprites.DuboseIdleAnims, sprites.DuboseIdleAnims, 16, 6, 16);
+	Npc Atticus = new Npc(sprites.AtticusForwardAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 3, 10, 16);
+	Npc Jem = new Npc(sprites.JemForwardAnims, sprites.JemBackWardAnims, sprites.JemLeftAnims, sprites.JemRightAnims, 21, 10, 16);
 	BufferedImage TextBox, NameBox;
+	boolean printRunning = false;
+	int Level = 1;
 	String TextToPrint = "";
 	String NameToPrint = "";
 	public Main(int Height, int Width, int Scale, int PixelWidth, int PixelHeight, int ImageToPixelRatio, File DataFolder) {
 		super(Height, Width, Scale, PixelWidth, PixelHeight, ImageToPixelRatio, DataFolder, GameType.FREE_ROAM_TILE_BASED);
-		TextToPrint = "This is a very random and long paragraph to test out the current text box. In no way will this be an actual   thing in the game eventually but this is simply to test out the line creating mechanic to render  text in the text box in the bottom of the screen.";
-		NameToPrint = "Marcus Dubreuil";
 		DataFolder.mkdirs();
 		setIconImage();
 		setTextBoxImage();
@@ -48,13 +50,175 @@ public class Main extends WPEngine4 {
 		//level = new RandomLevelTKAM(64,64, DataFolder, "Testy");
 		level = new Level(DataFolder, "Level1", this);
 		setEngineKeyListener(KL);
-		player = new TKAMPlayer(256, 256, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
-		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 6, 16);
+		player = new TKAMPlayer(21, 11, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+//		npc = new Npc(sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, 3, 6, 16);
 		player.init(level,this);
 		PackFrame();
 		start();
+		Atticus.init(level, this);
+		Jem.init(level, this);
+		InitiateLevel();
 	}
 	
+	private void printText(final String name, final String Text) {
+//		Thread printthread = new Thread() {
+//			public void run() {
+				try {
+						for(int i = 1; i <= name.length(); i++) {
+							if(!KL.KeyPressed) {
+								Thread.sleep(25);
+								NameToPrint = name.substring(0, i);
+							}
+						}
+						
+						for(int i = 1; i <= Text.length(); i++) {
+							if(!KL.KeyPressed) {
+								Thread.sleep(25);
+								TextToPrint = Text.substring(0, i);
+							}
+						}
+						
+						KL.KeyPressed = false;
+				} catch (InterruptedException e) {						
+					e.printStackTrace();
+				}
+				NameToPrint = name;
+				TextToPrint = Text;
+			}
+//		};
+//		printthread.start();
+//	}
+
+	private void InitiateLevel() {
+		Level = 1;
+		Thread Level1 = new Thread(){
+			String skipline = "                                                  ";
+			public void run() {
+				KL.stallListen = true;
+						printText("Marcus/Ethan","Welcome to our TKAM game made by Marcus Dubreuil and Ethan Defrank. We will be going through several" +
+									"          scenes to represent our individual themes throughout the game.                                                         " +
+									"(Press any key to continue)");
+						Wait();
+						printText("Marcus Dubreuil", "We will start with my theme, which is the depiction of Morality shown through Atticus. " +
+									"Our first scene is     when Scout is walking by Mrs. Dubose's house. I will send you through the scene and then explain.             " + skipline +
+									"(Press any key to be sent through the scene)");
+						Wait();
+						//Walk Scout to x = 16
+						
+						WalkLeftwithJem(player.getXTilePos() - 16);
+						printText("Scout", "Hey, Mrs. Dubose.");
+						Wait();
+						dubose.BeginAnim();
+						printText("Mrs. Dubose","Don’t you say hey to me, you ugly girl! You say good afternoon!");
+						Wait();
+						DuboseNPC.anim = false;
+						WalkAtticusRight((Atticus.x / 16) + 4);
+						printText("Scout/Jem", "Atticus!");
+						WalkLeftwithJem(player.getXTilePos() - 11);
+						Wait();
+						printText("Atticus", "Hello Scout and Jem and Good afternoon, Mrs. Dubose! You look like a picture this afternoon.");
+						int PlayerXArrive = player.getXTilePos() + 6;
+						while(player.getXTilePos() != PlayerXArrive) {
+							try {
+								Thread.sleep(5);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							KL.right = true;
+							Atticus.right = true;
+							Jem.right = true;
+						}
+						Jem.right = false;
+						Atticus.right = false;
+						KL.right = false;
+						KL.ReleasedRight = true;
+						Wait();
+						WalkAtticusRight((Atticus.x / 16) + 5);
+						dubose.BeginAnim();
+						printText("Mrs. Dubose", "How dare you call your father by this name you disrespectful mutts!");
+						Wait();
+						DuboseNPC.anim = false;
+						int JemXArrive = ((Jem.x / 16) + 17);
+						while((Jem.x / 16) != JemXArrive) {
+							try {
+								Thread.sleep(5);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							Jem.right = true;
+						}
+						Jem.right = false;
+						Level = 0;
+						
+						
+				KL.stallListen = false;
+				System.out.println(KL.stallListen);
+			}
+
+			private void WalkAtticusRight(int x) {
+				int AtticusXArrive = (Atticus.x / 16) + x;
+				while((Atticus.x / 16) != AtticusXArrive) {
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Atticus.right = true;
+				}
+				Atticus.right = false;
+			}
+
+			private void WalkLeftwithJem(int x) {
+				int PlayerXArrive = player.getXTilePos() - x;
+				while(player.getXTilePos() != PlayerXArrive) {
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					KL.left = true;
+					Jem.left = true;
+				}
+				Jem.left = false;
+				KL.left = false;
+				KL.ReleasedLeft = true;
+			}
+			
+			private void WalkLeft(int x) {
+				int PlayerXArrive = player.getXTilePos() - x;
+				while(player.getXTilePos() != PlayerXArrive) {
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					KL.left = true;
+				}
+				KL.left = false;
+				KL.ReleasedLeft = true;
+			}
+
+			private void Wait() {
+				KL.KeyPressed = false;
+				while(!KL.KeyPressed) {
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				reset();
+			}
+
+			private void reset() {
+				KL.KeyPressed = false;
+				NameToPrint = "";
+				TextToPrint = "";
+			}
+		};
+		Level1.start();
+	}
+
 	private void setTextBoxImage() {
 		try {
 			InputStream imgStream = Main.class.getResourceAsStream("/TextBox.png");
@@ -81,22 +245,26 @@ public class Main extends WPEngine4 {
 	
 	public void update() {
 		KeyEvents.update();
-		player.update();
+		if(Level == 1) {
+			player.update();
+			Atticus.update();
+			Jem.update();
+		} else if(Level == 0) {
+			player.update();
+		}
 	}
 	
 	public void privateRender() {
 		int xScroll = player.x + screen.width /2 - 16;
 		int yScroll = player.y + screen.height /2 - 16;
-		if(player.y >= npc.y + 16) {
-			npc.render(screen);
-			player.render(xScroll, yScroll, screen);
-		} else if(player.y <= npc.y + 16){
-			player.render(xScroll, yScroll, screen);
-			npc.render(screen);
-		} else {
-			npc.render(screen);
-			player.render(xScroll, yScroll, screen);
+		if(Level == 1) {
+			dubose.render(screen);
+			Jem.render(screen);
+			Atticus.render(screen);
+		} else if(Level == 0) {
+			dubose.render(screen);
 		}
+		player.render(xScroll, yScroll, screen);
 	}
 	
 	public static void main(String[] args) {
