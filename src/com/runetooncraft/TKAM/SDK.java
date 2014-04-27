@@ -34,8 +34,10 @@ public class SDK extends WPEngine4  {
 		SetWindowTitle("War-Pigion Engine4");
 		KL = new KeyListener();
 		SetClassInstance(this,true);
-		level = new Level(DataFolder, "Level1", this);
-//		level = new RandomLevelTKAM(128,128,DataFolder,"Level1", this);
+//		level = new Level(DataFolder, "Level1", this);
+		level = new RandomLevelTKAM(128,128,DataFolder,"Level1", this);
+		Level.PDR = 4;
+		setBorder();
 		setEngineKeyListener(KL);
 		PackFrame();
 		start();
@@ -70,7 +72,7 @@ public class SDK extends WPEngine4  {
 		}
 		workingDirectory = System.getProperty("user.home") + "/desktop/TKAMGame";
 		File DataFolder = new File(workingDirectory);
-		new SDK(427, 240, 2000, 16, 16, 16, DataFolder);
+		new SDK(512, 256, 2000, 16, 16, 16, DataFolder);
 	}
 	
 	private void setIconImage() {
