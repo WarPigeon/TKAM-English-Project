@@ -70,7 +70,7 @@ public class SDK extends WPEngine4  {
 		    //workingDirectory = System.getProperty("user.home");
 		    //workingDirectory += "/Library/Application Support";
 		}
-		workingDirectory = System.getProperty("user.home") + "/desktop/TKAMGame";
+		workingDirectory = System.getProperty("user.home") + "/TKAMGame";
 		File DataFolder = new File(workingDirectory);
 		new SDK(512, 256, 2000, 16, 16, 16, DataFolder);
 	}
