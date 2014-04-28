@@ -452,6 +452,60 @@ public class Main extends WPEngine4 {
 				Wait();
 				printText("Ethan DeFrank", "I chose to focus on the theme of Maturity because TKAM is definitely a coming-of-age book. Jem was an obvious choice of the character who impacts this theme because he is the big brother to the narrator. A “big brother” is a symbol of maturity because he is the leader of the siblings. He has to act mature even where he isn’t. Throughout the novel, we watch Jem go from a young boy who is pretending to be a man to a young man who knows and understands his place in society. There is not a more fitting character; Jem’s character is the epitome of the theme of Maturity in TKAM.");
 				Wait();
+				TextToPrint = "That's it! Now you can free-roam and if you wish to restart the game, simply restart the .jar file.";
+				NameToPrint = "Marcus/Ethan";
+				KL.stallListen = false;
+				FreeRoam();
+			}
+			
+			private void FreeRoam() {
+				Level = 50;
+				level.LoadLevelFile(DataFolder, "Level1");
+				Level = 0;
+				player = new TKAMPlayer(35, 10, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+				player.init(level, level.engine);
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				boolean done = false;
+				while(!done) {
+					System.out.println("X: " + player.x + "y: " + player.y);
+					if(player.x >= 547 && player.x <= 572 && player.y >= 108 && player.y <= 114) {
+						done = true;
+					}
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				Level = 50;
+				level.LoadLevelFile(DataFolder, "Level2");
+				Level = 3;
+				Atticus = new Npc(sprites.AtticusLeftAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 3, 7, 16);
+				Jem = new Npc(sprites.JemForwardAnims, sprites.JemBackWardAnims, sprites.JemLeftAnims, sprites.JemRightAnims, 2, 7, 16);
+				player.x = 9 * 16;
+				player.y = 11 * 15;
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				done = false;
+				while(!done) {
+					System.out.println("X: " + player.x + "y: " + player.y);
+					if(player.x >= 138 && player.x <= 152 && player.y >= 159 && player.y <= 170) {
+						done = true;
+					}
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				FreeRoam();
 			}
 
 			private void WalkAtticusRight(int x) {
@@ -574,7 +628,7 @@ public class Main extends WPEngine4 {
 	public void privateRender() {
 		int xScroll = player.x + screen.width /2 - 16;
 		int yScroll = player.y + screen.height /2 - 16;
-		if(Level < 4 || Level != 0) {
+		if(Level < 4 && Level != 0) {
 			player.render(xScroll, yScroll, screen);
 		}
 		if(Level == 1) {
@@ -596,7 +650,7 @@ public class Main extends WPEngine4 {
 			Jem.render(screen);
 		} else if(Level == 8) {
 			Atticus.render(screen);
-			player.render(screen);
+			player.render(xScroll, yScroll, screen);
 		} else if(Level == 9) {
 			Atticus.render(screen);
 			Jem.render(screen);
