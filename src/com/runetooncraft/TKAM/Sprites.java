@@ -64,6 +64,16 @@ public class Sprites {
 	public static Sprite ManTop2 = new Sprite(16, 13, 1, Sheet1);
 	public static Sprite ManBottom = new Sprite(16, 12, 2, Sheet1);
 	
+	//New Tiles
+	public static Sprite TreeTL = new Sprite(16, 2, 2, Sheet1);
+	public static Sprite TreeBL = new Sprite(16, 2, 3, Sheet1);
+	public static Sprite TreeMT = new Sprite(16, 3, 2, Sheet1);
+	public static Sprite TreeMB = new Sprite(16, 3, 3, Sheet1);
+	public static Sprite TreeTR = new Sprite(16, 4, 2, Sheet1);
+	public static Sprite TreeBR = new Sprite(16, 2, 4, Sheet1);
+	public static Sprite TreeBark = new Sprite(16, 3, 4, Sheet1);
+	
+	
 	//Player Sprites
 	//Scout
 	public static SpriteSheet ScoutSheet = new SpriteSheet("/Characters/Scout.png",69,101);

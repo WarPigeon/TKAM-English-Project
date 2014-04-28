@@ -1,6 +1,7 @@
 package com.runetooncraft.TKAM;
 
 import com.runetooncraft.TKAM.tiletypes.*;
+import com.runetooncraft.warpigeon.engine.graphics.Sprite;
 import com.runetooncraft.warpigeon.engine.level.Level;
 import com.runetooncraft.warpigeon.engine.level.Tile;
 import com.runetooncraft.warpigeon.testengine.tiles.GrassTile;
@@ -63,6 +64,15 @@ public class Tiles {
 	//Jail
 	public static Tile JailCell = new BasicTile(Sprites.JailCell, 26, "JailCell", true);
 	
+	
+	//Tree
+	public static Tile TreeTL = new BasicTile(Sprites.TreeTL, 30, "TreeTL", true);
+	public static Tile TreeBL = new BasicTile(Sprites.TreeBL, 31, "TreeBL", true);
+	public static Tile TreeMT = new BasicTile(Sprites.TreeBL, 32, "TreeMT", true);
+	public static Tile TreeMB = new BasicTile(Sprites.TreeMB, 33, "TreeMB", true);
+	public static Tile TreeTR = new BasicTile(Sprites.TreeTR, 34, "TreeTr", true);
+	public static Tile TreeBR = new BasicTile(Sprites.TreeBR, 35, "TreeBR", true);
+	public static Tile TreeBark = new BasicTile(Sprites.TreeBark, 36, "TreeBark", true);
 	public Tiles() {
 		Level.TileIDS.put(0, Grass1);
 		Level.TileIDS.put(1, Grass2);
@@ -94,6 +104,13 @@ public class Tiles {
 		Level.TileIDS.put(27, ManTop1);
 		Level.TileIDS.put(28, ManTop2);
 		Level.TileIDS.put(29, ManBottom);
+		Level.TileIDS.put(30, TreeTL);
+		Level.TileIDS.put(31, TreeBL);
+		Level.TileIDS.put(32, TreeMT);
+		Level.TileIDS.put(33, TreeMB);
+		Level.TileIDS.put(34, TreeTR);
+		Level.TileIDS.put(35, TreeBR);
+		Level.TileIDS.put(36, TreeBark);
 		Level.VoidTile = Void;
 		Level.LoadingTile = BrickTile;
 	}
