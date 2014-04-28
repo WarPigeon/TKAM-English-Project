@@ -14,7 +14,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.channels.Channel;
+import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -618,25 +622,23 @@ public class Main extends WPEngine4 {
 	public static void main(String[] args) {
 		String workingDirectory;
 		String OS = (System.getProperty("os.name")).toUpperCase();
-		if (OS.contains("WIN")) {
-		    workingDirectory = System.getenv("AppData");
-		} else {
-		    workingDirectory = System.getProperty("user.home");
-		    workingDirectory += "/Library/Application Support";
-		}
-		workingDirectory = workingDirectory + "/WarPigeon/TKAMGame";
-//		workingDirectory = System.getProperty("user.home") + "/desktop/TKAMGame";
+//		if (OS.contains("WIN")) {
+//		    workingDirectory = System.getenv("AppData");
+//		} else {
+//		    workingDirectory = System.getProperty("user.home");
+//		    workingDirectory += "/Library/Application Support";
+//		}
+//		workingDirectory = "/WarPigeon/TKAMGame";
+		workingDirectory = System.getProperty("user.home") + "/TKAMGame";
 		File DataFolder = new File(workingDirectory); 
-		File dir = new File(Main.class.getResource("/Levels").getPath());
-		try {
-			FileChannel src = new FileInputStream(dir).getChannel();
-			FileChannel dest = new FileOutputStream(new File(DataFolder + "/Levels")).getChannel();
-			dest.transferFrom(src, 0, src.size());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			InputStream is = Main.class.getResourceAsStream("/Levels");
+//			Channel src = Channels.newChannel(is);
+//			FileChannel dest = (new FileOutputStream(DataFolder + "/Levels")).getChannel();
+//			dest.transferFrom((ReadableByteChannel) src, 0, is.available());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		new Main(427, 240, 2000, 16, 16, 16, DataFolder);
 	}
 	
