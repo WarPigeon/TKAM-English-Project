@@ -37,6 +37,10 @@ public class Sprites {
 	public static Sprite BookCaseTop = new Sprite(16, 10, 0, Sheet1);
 	public static Sprite BookCaseBottom = new Sprite(16, 10, 1, Sheet1);
 	
+	//Bed
+	public static Sprite BedTop = new Sprite(16, 14, 0, Sheet1);
+	public static Sprite BedBottom = new Sprite(16, 14, 1, Sheet1);
+	
 	//Windows
 	public static Sprite Window1Top = new Sprite(16, 6, 0, Sheet1);
 	public static Sprite Window1Bottom = new Sprite(16, 6, 1, Sheet1);
@@ -52,6 +56,8 @@ public class Sprites {
 	public static Sprite Stairs1 = new Sprite(16, 2, 1, Sheet1);
 	public static Sprite HouseExt = new Sprite(16, 3, 1, Sheet1);
 	
+	//Jail
+	public static Sprite JailCell = new Sprite(16, 15, 0, Sheet1);
 	
 	//Player Sprites
 	//Scout

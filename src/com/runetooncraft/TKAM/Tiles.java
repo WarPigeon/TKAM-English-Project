@@ -8,7 +8,7 @@ import com.runetooncraft.warpigeon.testengine.tiles.VoidTile;
 
 public class Tiles {
 	//Void
-	public static Tile Void = new VoidTile(Sprites.Void,3);
+	public static Tile Void = new BasicTile(Sprites.Void,3,"VoidTile",true);
 	
 	//Grass
 	public static Tile Grass1 = new GrassTile(Sprites.Grass1,0);
@@ -26,6 +26,10 @@ public class Tiles {
 	//Bookcase
 	public static Tile BookcaseTop = new BasicTile(Sprites.BookCaseTop, 22, "BookCaseTop", true);
 	public static Tile BookcaseBottom = new BasicTile(Sprites.BookCaseBottom, 23, "BookCaseBottom", true);
+	
+	//Bed
+	public static Tile BedTop = new BasicTile(Sprites.BedTop, 24, "BedTop", false);
+	public static Tile BedBottom = new BasicTile(Sprites.BedBottom, 25, "BedBottom", false);
 	
 	//Wall Interior
 	public static Tile WallInterior = new BasicTile(Sprites.WallInterior, 17, "WallInterior", true);
@@ -50,6 +54,9 @@ public class Tiles {
 	public static Tile PoleBotTile = new BasicTile(Sprites.PoleBot, 10, "PoleBot", false);
 	public static Tile Stairs1 = new BasicTile(Sprites.Stairs1, 11, "Stairs1", false);
 	public static Tile HouseExt = new BasicTile(Sprites.HouseExt, 12, "HouseExt", true);
+	
+	//Jail
+	public static Tile JailCell = new BasicTile(Sprites.JailCell, 26, "JailCell", true);
 	
 	public Tiles() {
 		Level.TileIDS.put(0, Grass1);
@@ -76,6 +83,9 @@ public class Tiles {
 		Level.TileIDS.put(21, BigTableBR);
 		Level.TileIDS.put(22, BookcaseTop);
 		Level.TileIDS.put(23, BookcaseBottom);
+		Level.TileIDS.put(24, BedTop);
+		Level.TileIDS.put(25, BedBottom);
+		Level.TileIDS.put(26, JailCell);
 		Level.VoidTile = Void;
 		Level.LoadingTile = BrickTile;
 	}
