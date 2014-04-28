@@ -55,6 +55,11 @@ public class Tiles {
 	public static Tile Stairs1 = new BasicTile(Sprites.Stairs1, 11, "Stairs1", false);
 	public static Tile HouseExt = new BasicTile(Sprites.HouseExt, 12, "HouseExt", true);
 	
+	//Man
+	public static Tile ManTop1 = new BasicTile(Sprites.ManTop1, 27, "ManTop1", false);
+	public static Tile ManTop2 = new BasicTile(Sprites.ManTop2, 28, "ManTop2", false);
+	public static Tile ManBottom = new BasicTile(Sprites.ManBottom, 29, "ManBottom", false);
+	
 	//Jail
 	public static Tile JailCell = new BasicTile(Sprites.JailCell, 26, "JailCell", true);
 	
@@ -86,6 +91,9 @@ public class Tiles {
 		Level.TileIDS.put(24, BedTop);
 		Level.TileIDS.put(25, BedBottom);
 		Level.TileIDS.put(26, JailCell);
+		Level.TileIDS.put(27, ManTop1);
+		Level.TileIDS.put(28, ManTop2);
+		Level.TileIDS.put(29, ManBottom);
 		Level.VoidTile = Void;
 		Level.LoadingTile = BrickTile;
 	}

@@ -9,8 +9,12 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +25,7 @@ import com.runetooncraft.warpigeon.engine.WPEngine4;
 import com.runetooncraft.warpigeon.engine.entity.mob.Npc;
 import com.runetooncraft.warpigeon.engine.entity.mob.Player;
 import com.runetooncraft.warpigeon.engine.graphics.Sprite;
+import com.runetooncraft.warpigeon.engine.graphics.SpriteSheet;
 import com.runetooncraft.warpigeon.engine.level.Level;
 import com.runetooncraft.warpigeon.engine.level.RandomLevel;
 import com.runetooncraft.warpigeon.engine.utils3d.KeyListener;
@@ -44,7 +49,7 @@ public class Main extends WPEngine4 {
 		setIconImage();
 		setTextBoxImage();
 		SetWindowResizable(false);
-		SetWindowTitle("TKAM Game Project by Marcus Dubreuil and Ethan Defrank");
+		SetWindowTitle("TKAM Game Project by Marcus Dubreuil and Ethan DeFrank");
 		KL = new KeyListener();
 		SetClassInstance(this,false);
 		//level = new RandomLevelTKAM(12,12, DataFolder, "Level2", this);
@@ -95,7 +100,7 @@ public class Main extends WPEngine4 {
 			String skipline = "                                                  ";
 			public void run() {
 				KL.stallListen = true;
-						printText("Marcus/Ethan","Welcome to our TKAM game made by Marcus Dubreuil and Ethan Defrank. We will be going through several" +
+						printText("Marcus/Ethan","Welcome to our TKAM game made by Marcus Dubreuil and Ethan DeFrank. We will be going through several" +
 									"          scenes to represent our individual themes throughout the game.                                                         " +
 									"(Press any key to continue)");
 						Wait();
@@ -191,7 +196,7 @@ public class Main extends WPEngine4 {
 				printText("Marcus Dubreuil", "As we can see Atticus is explaining to Jem how he must act like a gentleman despite what Mrs. Dubose          says to him. He is teaching Jem important morals concerning what is right to do as a gentleman.");
 				Wait();
 				Level = 50;
-				printText("Marcus Dubreuil", "Now we are going to transition to another Scene in the Finch house where Atticus is questioned on why he      supports Tom Finch.");
+				printText("Marcus Dubreuil", "Now we are going to transition to another Scene in the Finch house where Atticus is questioned on why he      supports Tom Robbinson.");
 				Wait();
 				Atticus = new Npc(sprites.AtticusRightAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 4, 7, 16);
 				Jem = new Npc(sprites.JemLeftAnims, sprites.JemBackWardAnims, sprites.JemLeftAnims, sprites.JemRightAnims, 5, 7, 16);
@@ -249,7 +254,6 @@ public class Main extends WPEngine4 {
 						e.printStackTrace();
 					}
 				}
-				int[] layer = new int[level.getWidth()*level.getHeight()];
 				level.LoadLevelFile(DataFolder, "Level3");
 				KL.stallListen = true;
 				KL.down = false;
@@ -274,15 +278,175 @@ public class Main extends WPEngine4 {
 				Wait();
 				printText("Atticus","They're certainly entitled to think that, and they're entitled to full respect for their opinions, but before I can live with other folks I've got to live with myself. The one thing that doesn't abide by majority rule is a person's conscience.");
 				Wait();
-				printText("Marcus Dubreuil", "Atticus once again brings up the \"Living with himself\" idea and that he must be able to live with himself before he can live with others. This shows that he has a strong conscience and cares more about what he thinks about himself than what others think about him. This idea of caring more about what you want youself to be that what will allow you to fit in to society is a big idea in defining morality.");
+				printText("Marcus Dubreuil", "Atticus once again brings up the \"Living with himself\" idea and that he must be able to live with himself     before he can live with others. This shows that he has a strong conscience and cares more about what he       thinks about himself than what others think about him. This idea of caring more about what you want youself to be that what will allow you to fit in to society is a big idea in defining morality.");
 				Wait();
-				printText("Marcus Dubreuil", "It's currently 10:02 PM at night and I have been coding since 12:00 AM without breaks so I didn't have time to build this next level. But here is the quote");
+				printText("Marcus Dubreuil", "It's currently 12:13 PM at night and I have been coding since 12:00 AM without breaks so I didn't have time to build this next level. But here is the quote");
 				Wait();
-				printText("Atticus", "You know the truth, and the truth is this: some Negroes lie, some Negroes are immoral, some Negro men are not to be trusted around women—black or white. But this is a truth that applies to the human race and to no particular race of men. There is not a person in this courtroom who has never told a lie, who has never done an immoral thing, and there is no man living who has never looked upon a woman without desire.");
+				printText("Atticus", "You know the truth, and the truth is this: some Negroes lie, some Negroes are immoral, some Negro men are    not to be trusted around women—black or white. But this is a truth that applies to the human race and to no    particular race of men. There is not a person in this courtroom who has never told a lie, who has never done an  immoral thing, and there is no man living who has never looked upon a woman without desire.");
 				Wait();
 				printText("Marcus Dubreuil", "Atticus uses the real main idea of morality which is relating someones life and decisions to someone elses in order to prove that everyone is equal. By saying that \"The truth is [these ideas] apply to the human race and no particular race of men\" Atticus is truly proving his equality idea.");
 				Wait();
-				printText("Marcus Dubreuil", "The reason I chose the morality theme relating to Atticus is because his whole persona is based on the idea of maintaining you conscience and putting yourselves in others shoes. In the end of the book, he even tried to put his own son under the bus in order to prove that Ewell did not die in Vain because even though he was one of the worst people who walked the earth, Atticus put himself in Ewell's shoes and thought about how he would of thought dying like that.");
+				printText("Marcus Dubreuil", "The reason I chose the morality theme relating to Atticus is because his whole persona is based on the idea   of maintaining you conscience and putting yourselves in others shoes. In the end of the book, he even tried to put his own son under the bus in order to prove that Ewell did not die in Vain because even though he was one  of the worst people who walked the earth, Atticus put himself in Ewell's shoes and thought about how he       would of thought dying like that.");
+				Wait();
+				printText("Ethan DeFrank", "Now we will shift gears to how Jem impacts the theme of Maturity");
+				Wait();
+				Level = 6;
+				level.LoadLevelFile(DataFolder, "Level1");
+				KL.stallListen = true;
+				KL.down = false;
+				KL.left = false;
+				KL.right = false;
+				KL.up = false;
+				reset();
+				player = new TKAMPlayer(57, 12, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+				Jem = new Npc(sprites.JemForwardAnims, sprites.JemBackWardAnims, sprites.JemLeftAnims, sprites.JemRightAnims, 52, 16, 16);
+				Jem.init(level, level.engine);
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				NameToPrint = "Ethan DeFrank";
+				TextToPrint = "We see Jem run across the screen up to the Radley house, touch the door, and run out of the screen again.";
+				while(Jem.y > 108) {
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Jem.up = true;
+				}
+				Jem.up = false;
+				printText("Jem", "*Touch*");
+				Wait();
+				while(Jem.y < 310) {
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Jem.down = true;
+				}
+				Jem.down = false;
+				printText("Ethan DeFrank", "We begin seeing Jem acting upon a dare to touch the Radley house. The only reason this dare is significant is because the children of Maycomb see this house as the \"haunted house\" (so to speak) of Maycomb County.         This is an immature idea that Jem will soon leave behind.");
+				Wait();
+				printText("Ethan DeFrank", "In this next scene Scout is standing outside the Finch house and Jem comes walking by.");
+				Wait();
+				player = new TKAMPlayer(35, 10, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+				Jem = new Npc(sprites.JemForwardAnims, sprites.JemBackWardAnims, sprites.JemEgyptianLeftAnims, sprites.JemEgyptianRightAnims, 44, 10, 16);
+				Jem.init(level, level.engine);
+				while(Jem.x != 561) {
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Jem.left = true;
+				}
+				Jem.left = false;
+				printText("Scout", "What are you doing?");
+				Wait();
+				printText("Jem", "Walking like an Egyptian.");
+				Wait();
+				printText("Scout", "I don’t see how they got anything done walking like that.");
+				Wait();
+				printText("Jem", "They accomplished more than Americans ever did. They invented toilet paper and perpetual embalming. Now       where would we be if they hadn’t?");
+				Wait();
+				printText("Ethan DeFrank", "This being what Scout refers to as Jem’s brief \"Egyptian Period\" shows a certain childlike obsession. This is a common characteristic of those who have not quite matured and are still trying new things to find their interests.");
+				Wait();
+				Level = 7;
+				level.LoadLevelFile(DataFolder, "Level4");
+				Atticus = new Npc(sprites.AtticusLeftAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 14, 11, 16);
+				Atticus.init(level, level.engine);
+				Jem = new Npc(sprites.JemBackWardAnims, sprites.JemBackWardAnims, sprites.JemLeftAnims, sprites.JemRightAnims, 14, 12, 16);
+				Jem.init(level, level.engine);
+				player = new TKAMPlayer(14, 12, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+				KL.stallListen = true;
+				KL.down = false;
+				KL.left = false;
+				KL.right = false;
+				KL.up = false;
+				reset();
+				printText("Scout","H-ey, Atticus!");
+				Wait();
+				Atticus = new Npc(sprites.AtticusForwardAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 14, 11, 16);
+				printText("Atticus", "Go home, Jem. Take Scout home");
+				Wait();
+				printText("Jem", "...");
+				Wait();
+				printText("Atticus", "Go home, I said.");
+				Wait();
+				printText("Jem", "*Shakes Head*");
+				Wait();
+				printText("Man", "I'll send him home.");
+				Wait();
+				player = new TKAMPlayer(14, 12, sprites.ScoutForwardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+				printText("Scout", "Don't you touch him!");
+				Wait();
+				printText("Man", "All right, Mr. Finch, get ‘em outa here. You got fifteen seconds to get ‘em outa here.");
+				Wait();
+				printText("Jem", "I ain’t going.");
+				Wait();
+				printText("Atticus", "Please, Jem.");
+				Wait();
+				printText("Ethan DeFrank", "Jem finally takes Scout home (after Scout breaks up the mob, of course). Jem’s resistance in blindly following Atticus’s orders shows that he is maturing to make his own decisions.");
+				Wait();
+				Level = 3;
+				level.LoadLevelFile(DataFolder, "Level2");
+				Atticus = new Npc(sprites.AtticusRightAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 4, 7, 16);
+				Jem = new Npc(sprites.JemLeftAnims, sprites.JemBackWardAnims, sprites.JemLeftAnims, sprites.JemRightAnims, 5, 7, 16);
+				Jem.init(level, level.engine);
+				player = new  TKAMPlayer(5, 10, sprites.ScoutBackWardAnims, sprites.ScoutBackWardAnims, sprites.ScoutLeftAnims, sprites.ScoutRightAnims, KL);
+				player.x = 5 * 16;
+				player.y = 10 * 15;
+				KL.stallListen = true;
+				KL.down = false;
+				KL.left = false;
+				KL.right = false;
+				KL.up = false;
+				reset();
+				printText("Jem", "*Sob*... It ain’t right, Atticus.");
+				Wait();
+				printText("Atticus", "No son, it’s not right.");
+				Wait();
+				while(Jem.x != 130) {
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Jem.right = true;
+				}
+				Jem.right = false;
+				Level = 8;
+				printText("Atticus", "It was a little too strong for him.");
+				Wait();
+				printText("Ethan DeFrank", "Jem was so confident that Tom would be found innocent that he is in complete shock. Although he has           matured so much from the beginning of the novel, he is still learning so much about society. He is only now    mentally maturing and learning the horrors of racial prejudice.");
+				Wait();
+				printText("Ethan DeFrank", "We will now cut to our final scene where Jem is trying to understand the verdict.");
+				Wait();
+				Atticus = new Npc(sprites.AtticusForwardAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 3, 7, 16);
+				Jem = new Npc(sprites.JemForwardAnims, sprites.JemBackWardAnims, sprites.JemLeftAnims, sprites.JemRightAnims, 2, 7, 16);
+				player.x = 9 * 16;
+				player.y = 11 * 15;
+				KL.stallListen = true;
+				KL.down = false;
+				KL.left = false;
+				KL.right = false;
+				KL.up = false;
+				Level = 9;
+				reset();
+				printText("Atticus", "There’s something in our world that makes men lose their heads - they couldn’t be fair if they tried. In our courts, when it’s a white man’s word against a black man’s, the white man always wins.");
+				Wait();
+				Atticus = new Npc(sprites.AtticusLeftAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 3, 7, 16);
+				printText("Jem", "Doesn’t make it right… You just can’t convict a man on evidence like that - you can’t.");
+				Wait();
+				printText("Atticus", "You couldn’t, but they could and did. The older you grow the more of it you’ll see...");
+				Wait();
+				Atticus = new Npc(sprites.AtticusForwardAnims, sprites.AtticusBackWardAnims, sprites.AtticusLeftAnims, sprites.AtticusRightAnims, 3, 7, 16);
+				printText("Ethan DeFrank", "Although Jem is still defiant, he discusses the situation with Atticus in order to understand it. This is a very mature thing to do, to seek out understanding where you have none.");
+				Wait();
+				printText("Ethan DeFrank", "I chose to focus on the theme of Maturity because TKAM is definitely a coming-of-age book. Jem was an obvious choice of the character who impacts this theme because he is the big brother to the narrator. A “big brother” is a symbol of maturity because he is the leader of the siblings. He has to act mature even where he isn’t. Throughout the novel, we watch Jem go from a young boy who is pretending to be a man to a young man who knows and understands his place in society. There is not a more fitting character; Jem’s character is the epitome of the theme of Maturity in TKAM.");
 				Wait();
 			}
 
@@ -393,6 +557,13 @@ public class Main extends WPEngine4 {
 		} else if(Level == 5) {
 			player.update();
 			Atticus.update();
+		} else if(Level == 6) {
+			player.update();
+			Jem.update();
+		} else if(Level == 7) {
+			Atticus.update();
+			player.update();
+			Jem.update();
 		}
 	}
 	
@@ -416,7 +587,17 @@ public class Main extends WPEngine4 {
 			Atticus.render(screen);
 		} else if(Level == 5) {
 			Atticus.render(screen);
+		} else if(Level == 7) {
+			Atticus.render(screen);
+			Jem.render(screen);
+		} else if(Level == 8) {
+			Atticus.render(screen);
+			player.render(screen);
+		} else if(Level == 9) {
+			Atticus.render(screen);
+			Jem.render(screen);
 		}
+		
 		if(Level >= 4 && Level < 5) {
 			player.render(xScroll, yScroll, screen);
 		}
@@ -426,7 +607,10 @@ public class Main extends WPEngine4 {
 	public void privateRenderAfterUpperLayers() {
 		int xScroll = player.x + screen.width /2 - 16;
 		int yScroll = player.y + screen.height /2 - 16;
-		if(Level >= 5 || Level == 0) {
+		if(Level == 6) {
+			Jem.render(screen);
+		}
+		if(Level >= 5 && Level < 8 || Level == 0) {
 			player.render(xScroll, yScroll, screen);
 		}
 	}
@@ -434,16 +618,25 @@ public class Main extends WPEngine4 {
 	public static void main(String[] args) {
 		String workingDirectory;
 		String OS = (System.getProperty("os.name")).toUpperCase();
-//		if (OS.contains("WIN")) {
-//		    workingDirectory = System.getenv("AppData");
-//		} else {
-//		    workingDirectory = System.getProperty("user.home");
-//		    workingDirectory += "/Library/Application Support";
-//		}
-//		workingDirectory = workingDirectory + "/WarPigeon/TKAMGame";
-		workingDirectory = System.getProperty("user.home") + "/desktop/TKAMGame";
-		//INPUT CODE TO UNPACK LEVELS HERE
+		if (OS.contains("WIN")) {
+		    workingDirectory = System.getenv("AppData");
+		} else {
+		    workingDirectory = System.getProperty("user.home");
+		    workingDirectory += "/Library/Application Support";
+		}
+		workingDirectory = workingDirectory + "/WarPigeon/TKAMGame";
+//		workingDirectory = System.getProperty("user.home") + "/desktop/TKAMGame";
 		File DataFolder = new File(workingDirectory); 
+		File dir = new File(Main.class.getResource("/Levels").getPath());
+		try {
+			FileChannel src = new FileInputStream(dir).getChannel();
+			FileChannel dest = new FileOutputStream(new File(DataFolder + "/Levels")).getChannel();
+			dest.transferFrom(src, 0, src.size());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		new Main(427, 240, 2000, 16, 16, 16, DataFolder);
 	}
 	

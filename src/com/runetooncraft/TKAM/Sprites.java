@@ -59,15 +59,21 @@ public class Sprites {
 	//Jail
 	public static Sprite JailCell = new Sprite(16, 15, 0, Sheet1);
 	
+	//Man
+	public static Sprite ManTop1 = new Sprite(16, 12, 1, Sheet1);
+	public static Sprite ManTop2 = new Sprite(16, 13, 1, Sheet1);
+	public static Sprite ManBottom = new Sprite(16, 12, 2, Sheet1);
+	
 	//Player Sprites
 	//Scout
 	public static SpriteSheet ScoutSheet = new SpriteSheet("/Characters/Scout.png",69,101);
 	public static SpriteSheet DuboseSheet = new SpriteSheet("/Characters/Dubose.png",18,67);
 	public static SpriteSheet JemSheet = new SpriteSheet("/Characters/Jem.png",69,109);
+	public static SpriteSheet JemEgyptianSheet = new SpriteSheet("/Characters/JemEgyptian.png",35,109);
 	public static SpriteSheet AtticusSheet = new SpriteSheet("/Characters/Atticus.png",69,133);
 	public static Sprite[] ScoutForwardAnims, ScoutBackWardAnims, ScoutLeftAnims, ScoutRightAnims;
 	public static Sprite[] DuboseIdleAnims;
-	public static Sprite[] JemForwardAnims, JemBackWardAnims, JemLeftAnims, JemRightAnims;
+	public static Sprite[] JemForwardAnims, JemBackWardAnims, JemLeftAnims, JemRightAnims, JemEgyptianLeftAnims, JemEgyptianRightAnims;
 	public static Sprite[] AtticusForwardAnims, AtticusBackWardAnims, AtticusLeftAnims, AtticusRightAnims;
 	public Sprites() {
 		ScoutForwardAnims = new Sprite[4];
@@ -117,6 +123,18 @@ public class Sprites {
 		JemRightAnims[1] = new Sprite(16, 26, 3, 1, JemSheet);
 		JemRightAnims[2] = new Sprite(16, 26, 3, 2, JemSheet);
 		JemRightAnims[3] = new Sprite(16, 26, 3, 3, JemSheet);
+		
+		JemEgyptianLeftAnims = new Sprite[4];
+		JemEgyptianLeftAnims[0] = new Sprite(16, 26, 0, 0, JemEgyptianSheet);
+		JemEgyptianLeftAnims[1] = new Sprite(16, 26, 0, 1, JemEgyptianSheet);
+		JemEgyptianLeftAnims[2] = new Sprite(16, 26, 0, 2, JemEgyptianSheet);
+		JemEgyptianLeftAnims[3] = new Sprite(16, 26, 0, 3, JemEgyptianSheet);
+		
+		JemEgyptianRightAnims = new Sprite[4];
+		JemEgyptianRightAnims[0] = new Sprite(16, 26, 1, 0, JemEgyptianSheet);
+		JemEgyptianRightAnims[1] = new Sprite(16, 26, 1, 1, JemEgyptianSheet);
+		JemEgyptianRightAnims[2] = new Sprite(16, 26, 1, 2, JemEgyptianSheet);
+		JemEgyptianRightAnims[3] = new Sprite(16, 26, 1, 3, JemEgyptianSheet);
 		
 		AtticusForwardAnims = new Sprite[4];
 		AtticusForwardAnims[0] = new Sprite(16, 32, 1, 0, AtticusSheet);
